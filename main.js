@@ -489,6 +489,40 @@ Juegos:
         }
       } break
 
+   
+    case 'up':
+    case 'update': {
+    const cp = require('child_process')
+    const { promisify } = require('util')
+    const execp = promisify(cp.exec).bind(cp)
+
+    await client.sendMessage(
+      m.chat,
+      { text: '📡 Actualizando repositorio, espera un momento...' },
+      { quoted: fkontak }
+    )
+
+    try {
+      const { stdout, stderr } = await execp('git pull').catch(() => ({ stdout: '', stderr: '' }))
+      if (stderr) throw new Error(stderr)
+
+      await client.sendMessage(
+        m.chat,
+        { text: `✅ *Update completado:*\n\n${stdout}` },
+        { quoted: fkontak }
+      )
+    } catch (e) {
+      await client.sendMessage(
+        m.chat,
+        { text: `⚠️ Error al ejecutar *git pull*.\n\n${e.message}` },
+        { quoted: fkontak }
+      )
+    }
+  }
+ break
+
+
+
       // ---------- YT / PLAY----------
       case 'play':
       case 'playaudio':
