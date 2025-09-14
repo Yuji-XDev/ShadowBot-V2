@@ -366,71 +366,106 @@ break
 case 'menu':
 case 'help':
 case 'allmenu': {
-const texto =
-`╔════▣◎▣════╗
-𝙈𝙚𝙣𝙪 - 𝙈𝙖𝙜𝙣𝙤𝙨𝘽𝙤𝙩
- ╚════▣◎▣════╝
+  const userId = m.sender
+  const usedPrefix = prefix
+  function formatBytes(bytes) {
+    if (bytes === 0) return '0 Bytes'
+    const sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB']
+    const i = Math.floor(Math.log(bytes) / Math.log(1024))
+    return parseFloat((bytes / Math.pow(1024, i)).toFixed(2)) + ' ' + sizes[i]
+  }
+
+  const texto = `
+╭━━━〔 🤖 𝗠𝗔𝗚𝗡𝗢𝗦𝗕𝗢𝗧 〕━━⬣
+┃
+┃ 👤 Usuario: @${userId.split('@')[0]}
+┃ ⚡ Prefijo: ${usedPrefix}
+┃ 💾 RAM usada: ${formatBytes(os.totalmem() - os.freemem())}
+┃ 📦 RAM total: ${formatBytes(os.totalmem())}
+┃
+╰━━━━━━━━━━━━━━━━━━━━⬣
+
 ╭───────────────✧
 │   ‣ 𝙄𝙣𝙛𝙤𝙧𝙢𝙖𝙘𝙞𝙤𝙣 🤖
-│   ╰┈➤ .${prefix}sc
-│   ╰┈➤ .${prefix}ping
-│   ╰┈➤ .${prefix} peedtest
+│   ╰┈➤ ${usedPrefix}sc
+│   ╰┈➤ ${usedPrefix}ping
+│   ╰┈➤ ${usedPrefix} peedtest
 ╰───────────────✧
 ╭───────────────✧
 │   ‣ 𝙊𝙣 / 𝙊𝙛𝙛 🚫
-│   ╰┈➤ .${prefix}on
-│   ╰┈➤ .${prefix}off
+│   ╰┈➤ ${usedPrefix}on
+│   ╰┈➤ ${usedPrefix}off
 ╰───────────────✧
 ╭───────────────✧
 │  ‣ 𝘽𝙪𝙨𝙘𝙖𝙙𝙤𝙧𝙚𝙨 🔎
-│  ╰┈➤ .${prefix}google
-│  ╰┈➤ .${prefix}ia
+│  ╰┈➤ ${usedPrefix}google
+│  ╰┈➤ ${usedPrefix}ia
 ╰───────────────✧
 ╭───────────────✧
 │  ‣ 𝙃𝙚𝙧𝙧𝙖𝙢𝙞𝙚𝙣𝙩𝙖𝙨 ⚙️
-│  ╰┈➤ .${prefix}hd
-│  ╰┈➤ .${prefix}traducir
+│  ╰┈➤ ${usedPrefix}hd
+│  ╰┈➤ ${usedPrefix}traducir
 ╰───────────────✧
 ╭───────────────✧
 │  ‣ 𝘿𝙚𝙨𝙘𝙖𝙧𝙜𝙖𝙨 📥
-│  ╰┈➤ .${prefix}play
-│  ╰┈➤ .${prefix}play audio
-│  ╰┈➤ .${prefix}play video
-│  ╰┈➤ .${prefix}play mp3doc
-│  ╰┈➤ .${prefix}play mp4doc
-│  ╰┈➤ .${prefix}gitclone
-│  ╰┈➤ .${prefix}tiktok
-│  ╰┈➤ .${prefix}facebook
-│  ╰┈➤ .${prefix}instagram
-│  ╰┈➤ .${prefix}slider
-│  ╰┈➤ .${prefix}x
-│  ╰┈➤ .${prefix}gdrive
+│  ╰┈➤ ${usedPrefix}play
+│  ╰┈➤ ${usedPrefix}play audio
+│  ╰┈➤ ${usedPrefix}play video
+│  ╰┈➤ ${usedPrefix}play mp3doc
+│  ╰┈➤ ${usedPrefix}play mp4doc
+│  ╰┈➤ ${usedPrefix}gitclone
+│  ╰┈➤ ${usedPrefix}tiktok
+│  ╰┈➤ ${usedPrefix}facebook
+│  ╰┈➤ ${usedPrefix}instagram
+│  ╰┈➤ ${usedPrefix}slider
+│  ╰┈➤ ${usedPrefix}x
+│  ╰┈➤ ${usedPrefix}gdrive
 ╰───────────────✧
 ╭───────────────✧
 │  ‣ 𝙂𝙧𝙪𝙥𝙤𝙨 👥
-│  ╰┈➤ .${prefix}admins
-│  ╰┈➤ .${prefix}grupo
-│  ╰┈➤ .${prefix}demote
-│  ╰┈➤ .${prefix}fantasmas
-│  ╰┈➤ .${prefix}hidetag
-│  ╰┈➤ .${prefix}kick
-│  ╰┈➤ .${prefix}link
-│  ╰┈➤ .${prefix}promote
-│  ╰┈➤ .${prefix}tagall
+│  ╰┈➤ ${usedPrefix}admins
+│  ╰┈➤ ${usedPrefix}grupo
+│  ╰┈➤ ${usedPrefix}demote
+│  ╰┈➤ ${usedPrefix}fantasmas
+│  ╰┈➤ ${usedPrefix}hidetag
+│  ╰┈➤ ${usedPrefix}kick
+│  ╰┈➤ ${usedPrefix}link
+│  ╰┈➤ ${usedPrefix}promote
+│  ╰┈➤ ${usedPrefix}tagall
 ╰───────────────✧
 ╭───────────────✧
 │  ‣ 𝙎𝙩𝙞𝙠𝙚𝙧𝙨 🔰
-│  ╰┈➤ .${prefix}s
+│  ╰┈➤ ${usedPrefix}s
 ╰───────────────✧
 ╭───────────────✧
 │  ‣ 𝙋𝙧𝙤𝙥𝙞𝙚𝙩𝙖𝙧𝙞𝙤 👑
-│  ╰┈➤ .${prefix}update
-│  ╰┈➤ .${prefix}restart
-│  ╰┈➤ .${prefix}join
-│  ╰┈➤ .${prefix}getcase 
-│  ╰┈➤ .${prefix}addcase
-╰───────────────✧`
-await client.sendMessage(m.chat, {text: texto, contextInfo: { forwardingScore: 999, isForwarded: true, forwardedNewsletterMessageInfo: { newsletterName: 'MagnosBot | CHANNEL', newsletterJid: "120363422169517881@newsletter", }, externalAdReply: { title: `© MagnosBot`, body: '', thumbnailUrl: 'https://i.postimg.cc/NGrhjVTv/IMG-20250909-WA0062.jpg', sourceUrl: 'https://github.com/OmarGranda', mediaType: 1, renderLargerThumbnail: true }}}, {quoted: fkontak})
+│  ╰┈➤ ${usedPrefix}update
+│  ╰┈➤ ${usedPrefix}restart
+│  ╰┈➤ ${usedPrefix}join
+│  ╰┈➤ ${usedPrefix}getcase 
+│  ╰┈➤ ${usedPrefix}addcase
+╰───────────────✧
+`.trim()
+
+  await client.sendMessage(m.chat, {
+    text: texto,
+    contextInfo: { 
+      forwardingScore: 999, 
+      isForwarded: true, 
+      forwardedNewsletterMessageInfo: { 
+        newsletterName: 'MagnosBot | CHANNEL', 
+        newsletterJid: "120363422169517881@newsletter" 
+      }, 
+      externalAdReply: { 
+        title: `© MagnosBot`, 
+        body: '', 
+        thumbnailUrl: 'https://i.postimg.cc/NGrhjVTv/IMG-20250909-WA0062.jpg', 
+        sourceUrl: 'https://github.com/OmarGranda', 
+        mediaType: 1, 
+        renderLargerThumbnail: true 
+      }
+    }
+  }, { quoted: fkontak })
 }
 break
 
@@ -471,18 +506,55 @@ case 'speed': {
   const { promisify } = require('util')
   const exec = promisify(cp.exec).bind(cp)
 
-  m.reply('> 🚀 Cargando SpeedTest, espera un momento...')
+  await client.sendMessage(m.chat, { text: '> 🚀 Cargando SpeedTest, espera un momento...' }, { quoted: fkontak })
 
   try {
     let { stdout, stderr } = await exec('python3 speed.py --secure')
 
-    if (stderr) {
-      throw new Error(stderr)
-    }
+    if (stderr) throw new Error(stderr)
 
     let resultado = stdout || "❌ No se obtuvo salida del script."
-    m.reply(`📡 *Resultado del SpeedTest:*\n\n${resultado}`)
+
+    await client.sendMessage(m.chat, {
+      text: `📡 *Resultado del SpeedTest:*\n\n${resultado}`,
+      contextInfo: { 
+        forwardingScore: 999, 
+        isForwarded: true, 
+        forwardedNewsletterMessageInfo: { 
+          newsletterName: 'MagnosBot | CHANNEL', 
+          newsletterJid: "120363422169517881@newsletter" 
+        }, 
+        externalAdReply: { 
+          title: `⚡ SpeedTest - MagnosBot`, 
+          body: 'Revisa tu velocidad de internet 📶', 
+          thumbnailUrl: 'https://i.postimg.cc/NjTxRk94/speedtest.jpg', 
+          sourceUrl: 'https://github.com/OmarGranda', 
+          mediaType: 1, 
+          renderLargerThumbnail: true 
+        }
+      }
+    }, { quoted: fkontak })
+
   } catch (e) {
-    m.reply(`⚠️ Ocurrió un error al ejecutar SpeedTest`)
+    await client.sendMessage(m.chat, {
+      text: `⚠️ Ocurrió un error al ejecutar SpeedTest`,
+      contextInfo: { 
+        forwardingScore: 999, 
+        isForwarded: true, 
+        forwardedNewsletterMessageInfo: { 
+          newsletterName: 'MagnosBot | CHANNEL', 
+          newsletterJid: "120363422169517881@newsletter" 
+        }, 
+        externalAdReply: { 
+          title: `❌ Error en SpeedTest`, 
+          body: 'Inténtalo nuevamente más tarde', 
+          thumbnailUrl: 'https://i.postimg.cc/NjTxRk94/speedtest.jpg', 
+          sourceUrl: 'https://github.com/OmarGranda', 
+          mediaType: 1, 
+          renderLargerThumbnail: true 
+        }
+      }
+    }, { quoted: fkontak })
   }
 }
+break
