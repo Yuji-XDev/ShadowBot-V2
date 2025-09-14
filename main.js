@@ -489,8 +489,7 @@ Juegos:
         }
       } break
 
-   
-    case 'up':
+
     case 'update': {
     const cp = require('child_process')
     const { promisify } = require('util')
@@ -514,7 +513,7 @@ Juegos:
     } catch (e) {
       await client.sendMessage(
         m.chat,
-        { text: `⚠️ Error al ejecutar *git pull*.\n\n${e.message}` },
+        { text: `⚠️ Error al ejecutar.\n\n${e.message}` },
         { quoted: fkontak }
       )
     }
